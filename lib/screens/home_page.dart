@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +10,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Text("Home Page"),
+      ),
+    );
   }
 }

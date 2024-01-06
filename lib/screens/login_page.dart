@@ -1,8 +1,10 @@
 import 'package:dating_app/common/common.dart';
+import 'package:dating_app/routers/router.dart';
 import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:dating_app/widgets/dotted_border.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -44,7 +46,9 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                     fixedSize: MaterialStatePropertyAll(Size(380, 60)),
                     elevation: MaterialStatePropertyAll(0)),
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).pushNamed(Routers.navigation.name);
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -77,7 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: MaterialStatePropertyAll(Colors.black),
                     fixedSize: MaterialStatePropertyAll(Size(380, 60)),
                     elevation: MaterialStatePropertyAll(0)),
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).pushNamed(Routers.navigation.name);
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

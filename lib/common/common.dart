@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Common {
+  Color maincolor = Color(0xFFAF8994);
   TextStyle mainpink = TextStyle(
       fontSize: 35,
       fontFamily: "Quicksand",
