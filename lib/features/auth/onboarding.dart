@@ -2,18 +2,17 @@ import 'package:dating_app/common/common.dart';
 import 'package:dating_app/routers/router.dart';
 import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:dating_app/widgets/dotted_border.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     Common common = Common();
@@ -26,17 +25,17 @@ class _LoginPageState extends State<LoginPage> {
             const LoginAssets(),
             RichText(
                 text: TextSpan(children: <InlineSpan>[
-              TextSpan(text: "Love", style: common.mainpink),
-              TextSpan(text: " never checks the", style: common.mainblack)
+              TextSpan(text: "Love", style: common.mainPink),
+              TextSpan(text: " never checks the", style: common.mainBlack)
             ])),
             Text(
               "clock. Start your ",
-              style: common.mainblack,
+              style: common.mainBlack,
             ),
             RichText(
                 text: TextSpan(children: <InlineSpan>[
-              TextSpan(text: "journey", style: common.mainpink),
-              TextSpan(text: " today.", style: common.mainblack)
+              TextSpan(text: "journey", style: common.mainPink),
+              TextSpan(text: " today.", style: common.mainBlack)
             ])),
             const SizedBox(
               height: 20,
@@ -47,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                     fixedSize: MaterialStatePropertyAll(Size(380, 60)),
                     elevation: MaterialStatePropertyAll(0)),
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(Routers.navigation.name);
+                  context.go(Routes.homepage.path);
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     fixedSize: MaterialStatePropertyAll(Size(380, 60)),
                     elevation: MaterialStatePropertyAll(0)),
                 onPressed: () {
-                  GoRouter.of(context).pushNamed(Routers.navigation.name);
+                  GoRouter.of(context).pushNamed(Routes.navigation.name);
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,22 +112,26 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Row(
               children: [
-                Spacer(),
-                const Text("Don't have a accout?",
+                const Spacer(),
+                const Text("Don't have a account?",
                     style: TextStyle(
                         fontSize: 15,
                         fontFamily: "Quicksand",
                         fontWeight: FontWeight.w800,
                         color: Colors.black)),
                 TextButton(
-                    onPressed: () {},
-                    child: Text("  Signup",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Quicksand",
-                            fontWeight: FontWeight.w800,
-                            color: Colors.pink.shade300))),
-                Spacer()
+                  onPressed: () {},
+                  child: Text(
+                    "  Signup",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: "Quicksand",
+                      fontWeight: FontWeight.w800,
+                      color: Colors.pink.shade300,
+                    ),
+                  ),
+                ),
+                const Spacer()
               ],
             )
           ],

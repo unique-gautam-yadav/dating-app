@@ -12,7 +12,7 @@ class LoginAssets extends StatelessWidget {
       radius: const Radius.circular(30),
       color: Colors.pink.shade100,
       strokeWidth: 3,
-      dashPattern: [20, 10],
+      dashPattern: const [20, 10],
       child: Container(
         height: 500,
         width: 500,

@@ -7,10 +7,13 @@ environment:
   sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
+  animated_text_kit: ^4.2.2
   dotted_border: ^2.1.0
   flutter:
     sdk: flutter
   go_router: ^13.0.1
+  google_nav_bar: ^5.0.6
+  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:
