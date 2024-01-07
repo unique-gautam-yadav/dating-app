@@ -16,6 +16,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     Common common = Common();
+
     return Scaffold(
       body: CustomPaint(
         painter: BackgroundPainter(),
@@ -23,11 +24,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
         child: Column(
           children: [
             const LoginAssets(),
+            // const RotatedIcons(),
             RichText(
-                text: TextSpan(children: <InlineSpan>[
-              TextSpan(text: "Love", style: common.mainPink),
-              TextSpan(text: " never checks the", style: common.mainBlack)
-            ])),
+              text: TextSpan(
+                children: <InlineSpan>[
+                  TextSpan(text: "Love", style: common.mainPink),
+                  TextSpan(text: " never checks the", style: common.mainBlack)
+                ],
+              ),
+            ),
             Text(
               "clock. Start your ",
               style: common.mainBlack,

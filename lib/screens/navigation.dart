@@ -1,3 +1,4 @@
+import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
@@ -23,44 +24,60 @@ class RootPage extends StatelessWidget {
           context.go(Routes.homepage.path);
         }
       },
-      child: Scaffold(
-        body: child,
-        bottomNavigationBar: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(80),
-              border: Border.all(color: Colors.purpleAccent.shade100),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 30,
-                  color: Colors.pink.shade200,
-                  blurStyle: BlurStyle.normal,
-                  spreadRadius: 2,
-                  offset: const Offset(
-                    0,
-                    7,
+      child: Material(
+        child: CustomPaint(
+          painter: BackgroundPainter(),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SafeArea(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 10),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(80),
+                        border: Border.all(color: Colors.purpleAccent.shade100),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 30,
+                            color: Colors.pink.shade200,
+                            blurStyle: BlurStyle.normal,
+                            spreadRadius: 2,
+                            offset: const Offset(
+                              0,
+                              7,
+                            ),
+                          ),
+                        ],
+                      ),
+                      child: SizedBox(
+                        height: 50,
+                        child: CustomNavBar(
+                          colors: Colors.pink,
+                          selectedColor: Colors.white,
+                          icons: [
+                            selectedIndex == 0 ? Iconsax.home5 : Iconsax.home_1,
+                            selectedIndex == 1 ? Iconsax.heart5 : Iconsax.heart,
+                            selectedIndex == 2 ? Iconsax.add : Iconsax.add,
+                            selectedIndex == 3
+                                ? Iconsax.message5
+                                : Iconsax.message,
+                            selectedIndex == 4 ? Iconsax.user : Iconsax.user,
+                          ],
+                          currentIndex: selectedIndex,
+                          onItemTap: (index) => context.go(_indexToTab(index)),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
+                child,
               ],
-            ),
-            child: SizedBox(
-              height: 50,
-              child: CustomNavBar(
-                colors: Colors.pink,
-                selectedColor: Colors.white,
-                icons: [
-                  selectedIndex == 0 ? Iconsax.home5 : Iconsax.home_1,
-                  selectedIndex == 1 ? Iconsax.heart5 : Iconsax.heart,
-                  selectedIndex == 2 ? Iconsax.add : Iconsax.add,
-                  selectedIndex == 3 ? Iconsax.message5 : Iconsax.message,
-                  selectedIndex == 4 ? Iconsax.user : Iconsax.user,
-                ],
-                currentIndex: selectedIndex,
-                onItemTap: (index) => context.go(_indexToTab(index)),
-              ),
             ),
           ),
         ),
