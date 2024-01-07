@@ -1,13 +1,14 @@
-import 'package:dating_app/features/add/add_page.dart';
-import 'package:dating_app/features/chat/chat_screen.dart';
-import 'package:dating_app/features/like/like_page.dart';
-import 'package:dating_app/features/profile/profile_page.dart';
-import 'package:dating_app/routers/router.dart';
-import 'package:dating_app/features/home/home_page.dart';
-import 'package:dating_app/features/auth/onboarding.dart';
-import 'package:dating_app/screens/navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+
+import '../features/add/add_page.dart';
+import '../features/auth/onboarding.dart';
+import '../features/chat/chat_screen.dart';
+import '../features/home/home_page.dart';
+import '../features/like/like_page.dart';
+import '../features/profile/profile_page.dart';
+import '../screens/navigation.dart';
+import 'routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();

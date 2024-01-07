@@ -1,5 +1,5 @@
 import 'package:dating_app/common/common.dart';
-import 'package:dating_app/routers/router.dart';
+import 'package:dating_app/routers/routes.dart';
 import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:dating_app/widgets/dotted_border.dart';
 import 'package:flutter/material.dart';

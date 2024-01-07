@@ -1,133 +1,10 @@
-import 'package:dating_app/features/home/home_page.dart';
-import 'package:dating_app/routers/router.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 
-class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+import '../routers/routes.dart';
 
-  @override
-  State<NavigationPage> createState() => _NavigationPageState();
-}
-
-class _NavigationPageState extends State<NavigationPage> {
-  int selectedScreen = 0;
-  @override
-  Widget build(BuildContext context) {
-    // List<String> icons = [
-    //   "assets/images/home_black.png",
-    //   "assets/images/heart_black.png",
-    //   "assets/images/plus.png",
-    //   "assets/images/comment_black.png",
-    //   "assets/images/girl_profile.jpeg"
-    // ];
-    List<Widget> screens = [
-      const HomePage(),
-      const Center(
-        child: Text("Heart Page "),
-      ),
-      const Center(
-        child: Text("add Page "),
-      ),
-      const Center(
-        child: Text("message Page "),
-      ),
-      const Center(
-        child: Text("Avatar Page "),
-      )
-    ];
-    return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Container(
-            // margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(80),
-              border: Border.all(color: Colors.purpleAccent.shade100),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 30,
-                  color: Colors.pink.shade200,
-                  blurStyle: BlurStyle.normal,
-                  spreadRadius: 2,
-                  offset: const Offset(
-                    0,
-                    7,
-                  ),
-                ),
-              ],
-            ),
-            child: GNav(
-              selectedIndex: selectedScreen,
-              rippleColor: const Color(0xFFBE8E9B),
-              gap: 8,
-              activeColor: Colors.white,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: const Color(0xFFBE8E9B),
-              color: Colors.pink,
-              tabActiveBorder: Border.all(
-                color: Colors.white,
-              ),
-              tabs: [
-                GButton(
-                  icon: Iconsax.home5,
-                  shadow: selectedScreen == 0
-                      ? [
-                          const BoxShadow(
-                            color: Colors.pink,
-                            blurRadius: 10,
-                          ),
-                        ]
-                      : [],
-                ),
-                const GButton(
-                  icon: Iconsax.heart5,
-                ),
-                const GButton(
-                  icon: Iconsax.add,
-                ),
-                const GButton(
-                  icon: Iconsax.messages_15,
-                ),
-                GButton(
-                  padding: const EdgeInsets.all(2),
-                  leading: SizedBox(
-                    height: 35,
-                    width: 35,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/images/girl1.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  icon: Icons.email,
-                ),
-              ],
-              onTabChange: (value) {
-                setState(() {
-                  selectedScreen = value;
-                });
-              },
-            ),
-          ),
-        ),
-      ),
-      body: screens[selectedScreen],
-    );
-  }
-}
-
-class RootPage extends StatefulWidget {
+class RootPage extends StatelessWidget {
   const RootPage({
     Key? key,
     required this.child,
@@ -138,21 +15,16 @@ class RootPage extends StatefulWidget {
   final int selectedIndex;
 
   @override
-  State<RootPage> createState() => _RootPageState();
-}
-
-class _RootPageState extends State<RootPage> {
-  @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: widget.selectedIndex == 0,
+      canPop: selectedIndex == 0,
       onPopInvoked: (didPop) {
-        if (widget.selectedIndex != 0) {
+        if (selectedIndex != 0) {
           context.go(Routes.homepage.path);
         }
       },
       child: Scaffold(
-        body: widget.child,
+        body: child,
         bottomNavigationBar: SafeArea(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
@@ -180,15 +52,13 @@ class _RootPageState extends State<RootPage> {
                 colors: Colors.pink,
                 selectedColor: Colors.white,
                 icons: [
-                  widget.selectedIndex == 0 ? Iconsax.home5 : Iconsax.home_1,
-                  widget.selectedIndex == 1 ? Iconsax.heart5 : Iconsax.heart,
-                  widget.selectedIndex == 2 ? Iconsax.add : Iconsax.add,
-                  widget.selectedIndex == 3
-                      ? Iconsax.message5
-                      : Iconsax.message,
-                  widget.selectedIndex == 4 ? Iconsax.user : Iconsax.user,
+                  selectedIndex == 0 ? Iconsax.home5 : Iconsax.home_1,
+                  selectedIndex == 1 ? Iconsax.heart5 : Iconsax.heart,
+                  selectedIndex == 2 ? Iconsax.add : Iconsax.add,
+                  selectedIndex == 3 ? Iconsax.message5 : Iconsax.message,
+                  selectedIndex == 4 ? Iconsax.user : Iconsax.user,
                 ],
-                currentIndex: widget.selectedIndex,
+                currentIndex: selectedIndex,
                 onItemTap: (index) => context.go(_indexToTab(index)),
               ),
             ),
@@ -306,3 +176,126 @@ class CustomNavBar extends StatelessWidget {
     });
   }
 }
+
+
+
+// class NavigationPage extends StatefulWidget {
+//   const NavigationPage({super.key});
+
+//   @override
+//   State<NavigationPage> createState() => _NavigationPageState();
+// }
+
+// class _NavigationPageState extends State<NavigationPage> {
+//   int selectedScreen = 0;
+//   @override
+//   Widget build(BuildContext context) {
+//     // List<String> icons = [
+//     //   "assets/images/home_black.png",
+//     //   "assets/images/heart_black.png",
+//     //   "assets/images/plus.png",
+//     //   "assets/images/comment_black.png",
+//     //   "assets/images/girl_profile.jpeg"
+//     // ];
+//     List<Widget> screens = [
+//       const HomePage(),
+//       const Center(
+//         child: Text("Heart Page "),
+//       ),
+//       const Center(
+//         child: Text("add Page "),
+//       ),
+//       const Center(
+//         child: Text("message Page "),
+//       ),
+//       const Center(
+//         child: Text("Avatar Page "),
+//       )
+//     ];
+//     return Scaffold(
+//       bottomNavigationBar: SafeArea(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 20),
+//           child: Container(
+//             // margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+//             padding: const EdgeInsets.all(10),
+//             decoration: BoxDecoration(
+//               color: Colors.white,
+//               borderRadius: BorderRadius.circular(80),
+//               border: Border.all(color: Colors.purpleAccent.shade100),
+//               boxShadow: [
+//                 BoxShadow(
+//                   blurRadius: 30,
+//                   color: Colors.pink.shade200,
+//                   blurStyle: BlurStyle.normal,
+//                   spreadRadius: 2,
+//                   offset: const Offset(
+//                     0,
+//                     7,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             child: GNav(
+//               selectedIndex: selectedScreen,
+//               rippleColor: const Color(0xFFBE8E9B),
+//               gap: 8,
+//               activeColor: Colors.white,
+//               iconSize: 24,
+//               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+//               duration: const Duration(milliseconds: 400),
+//               tabBackgroundColor: const Color(0xFFBE8E9B),
+//               color: Colors.pink,
+//               tabActiveBorder: Border.all(
+//                 color: Colors.white,
+//               ),
+//               tabs: [
+//                 GButton(
+//                   icon: Iconsax.home5,
+//                   shadow: selectedScreen == 0
+//                       ? [
+//                           const BoxShadow(
+//                             color: Colors.pink,
+//                             blurRadius: 10,
+//                           ),
+//                         ]
+//                       : [],
+//                 ),
+//                 const GButton(
+//                   icon: Iconsax.heart5,
+//                 ),
+//                 const GButton(
+//                   icon: Iconsax.add,
+//                 ),
+//                 const GButton(
+//                   icon: Iconsax.messages_15,
+//                 ),
+//                 GButton(
+//                   padding: const EdgeInsets.all(2),
+//                   leading: SizedBox(
+//                     height: 35,
+//                     width: 35,
+//                     child: ClipRRect(
+//                       borderRadius: BorderRadius.circular(20),
+//                       child: Image.asset(
+//                         'assets/images/girl1.jpeg',
+//                         fit: BoxFit.cover,
+//                       ),
+//                     ),
+//                   ),
+//                   icon: Icons.email,
+//                 ),
+//               ],
+//               onTabChange: (value) {
+//                 setState(() {
+//                   selectedScreen = value;
+//                 });
+//               },
+//             ),
+//           ),
+//         ),
+//       ),
+//       body: screens[selectedScreen],
+//     );
+//   }
+// }
