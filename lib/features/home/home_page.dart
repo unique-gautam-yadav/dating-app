@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   int selecteditem = 0;
-  bool flag = false;
+  bool flag = true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,25 @@ class _HomePageState extends State<HomePage> {
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          " Amsterdam",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: "Quicksand-Bold",
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                        Row(
+                          children: [
+                            Text(
+                              " Amsterdam",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: "Quicksand-Bold",
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Iconsax.arrow_down_14,
+                              color: Colors.black,
+                              size: 18,
+                            )
+                          ],
                         ),
                         Text(
                           "Discover",
@@ -303,7 +315,7 @@ class ImageCard extends StatelessWidget {
                   //     topRight: Radius.circular(40.0),
                   //     bottomLeft: Radius.circular(40.0),
                   //     bottomRight: Radius.circular(40.0)),
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   image: DecorationImage(
                     // image: AssetImage('assets/images/girl2.jpeg'),
                     image: AssetImage(image),
