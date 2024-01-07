@@ -1,3 +1,4 @@
+import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class AddPage extends StatelessWidget {
@@ -5,8 +6,13 @@ class AddPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Add Page")),
+    return Scaffold(
+      body: CustomPaint(
+        painter: BackgroundPainter(),
+        child: const Center(
+          child: Text("Add Page"),
+        ),
+      ),
     );
   }
 }

@@ -38,10 +38,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
               style: common.mainBlack,
             ),
             RichText(
-                text: TextSpan(children: <InlineSpan>[
-              TextSpan(text: "journey", style: common.mainPink),
-              TextSpan(text: " today.", style: common.mainBlack)
-            ])),
+              text: TextSpan(
+                children: <InlineSpan>[
+                  TextSpan(text: "journey", style: common.mainPink),
+                  TextSpan(text: " today.", style: common.mainBlack)
+                ],
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),

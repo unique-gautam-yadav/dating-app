@@ -208,4 +208,10 @@ class _LoginAssetsState extends State<LoginAssets>
       ],
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }

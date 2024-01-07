@@ -1,3 +1,4 @@
+import 'package:dating_app/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LikePage extends StatelessWidget {
@@ -5,8 +6,13 @@ class LikePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Like Page")),
+    return Scaffold(
+      body: CustomPaint(
+        painter: BackgroundPainter(),
+        child: const Center(
+          child: Text("Like Page"),
+        ),
+      ),
     );
   }
 }

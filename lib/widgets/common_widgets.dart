@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class BackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.drawColor(Colors.white, BlendMode.src);
     Path path = Path()
       ..addOval(
         Rect.fromCircle(
@@ -32,7 +33,12 @@ class BackgroundPainter extends CustomPainter {
         ),
       );
 
-    canvas.drawShadow(path, Colors.pink.shade500, 100, false);
+    canvas.drawShadow(
+      path,
+      Colors.pink.shade500,
+      100,
+      true,
+    );
   }
 
   @override
