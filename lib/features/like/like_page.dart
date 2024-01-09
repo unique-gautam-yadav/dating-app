@@ -44,7 +44,7 @@ class _LikePageState extends State<LikePage> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        GoRouter.of(context).pushNamed(Routes.homepage.name);
+                        context.go(Routes.homepage.path);
                       },
                       icon: const Icon(
                         CupertinoIcons.back,
@@ -62,7 +62,7 @@ class _LikePageState extends State<LikePage> {
                   const Spacer()
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               SizedBox(

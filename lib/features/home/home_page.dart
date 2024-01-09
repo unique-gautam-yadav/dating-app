@@ -2,12 +2,12 @@
 import 'dart:ui';
 
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-
 import 'package:dating_app/features/home/model/story_model.dart';
+import 'package:dating_app/routers/routes.dart';
 import 'package:dating_app/widgets/common_widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     StoryModel(name: "Marry", image: "assets/images/boy1.avif"),
   ];
 
-  int selecteditem = 0;
+  int selectedItem = 0;
   bool flag = true;
 
   @override
@@ -57,9 +57,9 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Text(
-                              " Amsterdam",
+                              "Amsterdam",
                               style: TextStyle(
-                                  fontSize: 13,
+                                  fontSize: 11,
                                   fontFamily: "Quicksand-Bold",
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               width: 5,
                             ),
-                            const Icon(
+                            Icon(
                               Iconsax.arrow_down_14,
                               color: Colors.black,
                               size: 18,
@@ -77,22 +77,26 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           "Discover",
                           style: TextStyle(
-                              fontSize: 40,
-                              fontFamily: "Quicksand",
-                              fontWeight: FontWeight.w100,
-                              color: Colors.black),
+                            fontSize: 32,
+                            fontFamily: "Quicksand",
+                            fontWeight: FontWeight.w100,
+                            color: Colors.black,
+                          ),
                         )
                       ],
                     ),
                     IconButton.filled(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                Colors.white.withOpacity(0.5))),
-                        onPressed: () {},
-                        icon: const Icon(
-                          Iconsax.notification,
-                          color: Colors.black,
-                        ))
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                          Colors.white.withOpacity(0.5),
+                        ),
+                      ),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Iconsax.notification,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -111,72 +115,81 @@ class _HomePageState extends State<HomePage> {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selecteditem = index;
+                          selectedItem = index;
                         });
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          child: Stack(
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                      height: 80,
-                                      width: 80,
-                                      clipBehavior: Clip.hardEdge,
-                                      decoration: BoxDecoration(
-                                          // border: Border.all(color: Colors.white),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey.shade300,
-                                                blurRadius: 1,
-                                                blurStyle: BlurStyle.inner,
-                                                spreadRadius: 5)
-                                          ],
-                                          shape: BoxShape.circle),
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(3),
-                                          child: CircleAvatar(
-                                            radius: 40,
-                                            backgroundImage:
-                                                AssetImage(data.image),
-                                          ))),
-                                  Text(
-                                    data.name,
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        fontFamily: "Quicksand",
-                                        fontWeight: FontWeight.w200,
-                                        color: Colors.black),
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 60,
+                                  width: 60,
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade300,
+                                        blurRadius: 1,
+                                        blurStyle: BlurStyle.inner,
+                                        spreadRadius: 2,
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(40),
+                                      child: Image.asset(
+                                        data.image,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  data.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Quicksand",
+                                    // fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
+                            index == 0
+                                ? Positioned(
+                                    bottom: 60,
+                                    right: 0,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.pink.shade600,
+                                      radius: 12,
+                                      child: const Icon(
+                                        Iconsax.add,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
                                   )
-                                ],
-                              ),
-                              index == 0
-                                  ? Positioned(
-                                      bottom: 60,
-                                      right: 0,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.pink.shade600,
-                                        radius: 12,
-                                        child: const Icon(
-                                          Iconsax.add,
-                                          color: Colors.white,
-                                          size: 20,
-                                        ),
-                                      ))
-                                  : const SizedBox.shrink(),
-                            ],
-                          ),
+                                : const SizedBox.shrink(),
+                          ],
                         ),
                       ),
                     );
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.pink.shade50,
+                  borderRadius: BorderRadius.circular(120),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -191,21 +204,9 @@ class _HomePageState extends State<HomePage> {
                         width: 170,
                         duration: const Duration(milliseconds: 300),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              flag
-                                  ? BoxShadow(
-                                      blurRadius: 0,
-                                      blurStyle: BlurStyle.inner,
-                                      spreadRadius: 10,
-                                      color: Colors.pink.shade50)
-                                  : BoxShadow(
-                                      blurRadius: 0,
-                                      blurStyle: BlurStyle.inner,
-                                      spreadRadius: 0,
-                                      color: Colors.pink.shade50)
-                            ]),
+                          color: !flag ? Colors.pink.shade50 : Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                         child: Center(
                             child: Text(
                           "Make Friends",
@@ -220,30 +221,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          flag = false;
-                        });
+                        // setState(() {
+                        //   flag = false;
+
+                        // });
+                        context.go(Routes.likePage.path);
                       },
                       child: AnimatedContainer(
                         height: 40,
                         width: 170,
                         duration: const Duration(milliseconds: 300),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              flag
-                                  ? BoxShadow(
-                                      blurRadius: 0,
-                                      blurStyle: BlurStyle.inner,
-                                      spreadRadius: 0,
-                                      color: Colors.pink.shade50)
-                                  : BoxShadow(
-                                      blurRadius: 0,
-                                      blurStyle: BlurStyle.inner,
-                                      spreadRadius: 10,
-                                      color: Colors.pink.shade50)
-                            ]),
+                          color: flag ? Colors.pink.shade50 : Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                         child: Center(
                             child: Text(
                           "Search Partner",
@@ -288,7 +279,7 @@ class _HomePageState extends State<HomePage> {
 
 class ImageCard extends StatelessWidget {
   final String image;
-  ImageCard({
+  const ImageCard({
     Key? key,
     required this.image,
   }) : super(key: key);
