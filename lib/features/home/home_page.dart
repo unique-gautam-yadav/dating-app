@@ -18,12 +18,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<StoryModel> story = [
-    StoryModel(name: "Your Story", image: "assets/images/girl1.jpeg"),
-    StoryModel(name: "Ben", image: "assets/images/girl3.jpeg"),
-    StoryModel(name: "Lucie", image: "assets/images/girl2.jpeg"),
-    StoryModel(name: "Marry", image: "assets/images/boy1.avif"),
-    StoryModel(name: "Sunny", image: "assets/images/girl1.jpeg"),
-    StoryModel(name: "Ben", image: "assets/images/girl3.jpeg"),
+    // StoryModel(name: "Your Story", image: "assets/images/sonam.jpeg"),
+    // StoryModel(name: "Ben", image: "assets/images/sara.jpeg"),
+    // StoryModel(name: "Lucie", image: "assets/images/girl2.jpeg"),
+    // StoryModel(name: "Marry", image: "assets/images/boy1.avif"),
+    StoryModel(name: "Your Story", image: "assets/images/sara.jpeg"),
+    StoryModel(name: "Sunny", image: "assets/images/actress1.jpeg"),
+    StoryModel(name: "Ben", image: "assets/images/actress2.webp"),
+    StoryModel(name: "Lucie", image: "assets/images/actress3.webp"),
+    StoryModel(name: "Marry", image: "assets/images/actress4.jpeg"),
+
+    StoryModel(name: "Ben", image: "assets/images/sonam.jpeg"),
     StoryModel(name: "Lucie", image: "assets/images/girl2.jpeg"),
     StoryModel(name: "Marry", image: "assets/images/boy1.avif"),
   ];
