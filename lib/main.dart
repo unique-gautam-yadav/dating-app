@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.pink,
+          background: Colors.indigo,
           // brightness: Brightness.dark,
         ),
       ),

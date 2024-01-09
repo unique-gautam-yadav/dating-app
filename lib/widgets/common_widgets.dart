@@ -26,8 +26,8 @@ class BackgroundPainter extends CustomPainter {
       ..addRRect(
         RRect.fromRectAndRadius(
           Rect.fromPoints(
-            Offset(-50, size.height / 2 - 250),
-            Offset(50, size.height / 2 + 50),
+            Offset(-50, size.height / 2),
+            Offset(20, size.height / 2 + 90),
           ),
           const Radius.circular(50),
         ),
@@ -42,5 +42,5 @@ class BackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

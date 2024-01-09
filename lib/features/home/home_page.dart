@@ -104,88 +104,82 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
               SizedBox(
-                height: 150,
-                width: 600,
+                height: 113,
+                width: double.infinity,
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   scrollDirection: Axis.horizontal,
                   itemCount: story.length,
                   itemBuilder: (context, index) {
                     var data = story[index];
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedItem = index;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Stack(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 60,
-                                  width: 60,
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.shade300,
-                                        blurRadius: 1,
-                                        blurStyle: BlurStyle.inner,
-                                        spreadRadius: 2,
-                                      )
-                                    ],
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(40),
-                                      child: Image.asset(
-                                        data.image,
-                                        fit: BoxFit.cover,
-                                      ),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade300,
+                                      blurRadius: 1,
+                                      blurStyle: BlurStyle.inner,
+                                      spreadRadius: 2,
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(40),
+                                    child: Image.asset(
+                                      data.image,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  data.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "Quicksand",
-                                    // fontWeight: FontWeight.w500,
-                                    color: Colors.black,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                data.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "Quicksand",
+                                  // fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                          index == 0
+                              ? Positioned(
+                                  bottom: 60,
+                                  right: 0,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.pink.shade600,
+                                    radius: 12,
+                                    child: const Icon(
+                                      Iconsax.add,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
                                   ),
                                 )
-                              ],
-                            ),
-                            index == 0
-                                ? Positioned(
-                                    bottom: 60,
-                                    right: 0,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink.shade600,
-                                      radius: 12,
-                                      child: const Icon(
-                                        Iconsax.add,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
-                          ],
-                        ),
+                              : const SizedBox.shrink(),
+                        ],
                       ),
                     );
                   },
                 ),
               ),
+              const SizedBox(height: 15),
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: Colors.pink.shade50,
                   borderRadius: BorderRadius.circular(120),
@@ -193,44 +187,31 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          flag = true;
-                        });
-                      },
-                      child: AnimatedContainer(
-                        height: 40,
-                        width: 170,
-                        duration: const Duration(milliseconds: 300),
-                        decoration: BoxDecoration(
-                          color: !flag ? Colors.pink.shade50 : Colors.white,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Center(
-                            child: Text(
-                          "Make Friends",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: "Quicksand",
-                              fontWeight:
-                                  flag ? FontWeight.w500 : FontWeight.bold,
-                              color: Colors.black),
-                        )),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      width: 170,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
                       ),
+                      child: Center(
+                          child: Text(
+                        "Make Friends",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: "Quicksand",
+                            fontWeight:
+                                flag ? FontWeight.w500 : FontWeight.bold,
+                            color: Colors.black),
+                      )),
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
-                        // setState(() {
-                        //   flag = false;
-
-                        // });
                         context.go(Routes.likePage.path);
                       },
-                      child: AnimatedContainer(
-                        height: 40,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
                         width: 170,
-                        duration: const Duration(milliseconds: 300),
                         decoration: BoxDecoration(
                           color: flag ? Colors.pink.shade50 : Colors.white,
                           borderRadius: BorderRadius.circular(30),
@@ -250,23 +231,25 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: screenSize.width / 1,
-                height: screenSize.height / 2,
-                child: Swiper(
-                  itemCount: story.length,
-                  itemBuilder: (context, index) {
-                    var data = story[index];
-                    return ImageCard(
-                      image: data.image,
-                    );
-                  },
-                  layout: SwiperLayout.TINDER,
-                  itemHeight: screenSize.height,
-                  itemWidth: screenSize.width,
-                  axisDirection: AxisDirection.right,
-                  // pagination: const SwiperPagination(),
-                  transformer: ScaleAndFadeTransformer(),
+              Expanded(
+                child: SizedBox(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return Swiper(
+                        // itemWidth: constraints.maxWidth,
+                        // itemHeight: constraints.maxWidth,
+                        itemWidth: screenSize.width / 1,
+                        itemHeight: screenSize.width / 1.3,
+                        itemCount: 10,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          return const ImageCard(
+                              image: 'assets/images/girl2.jpeg');
+                        },
+                        layout: SwiperLayout.STACK,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -277,13 +260,18 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class ImageCard extends StatelessWidget {
+class ImageCard extends StatefulWidget {
   final String image;
   const ImageCard({
     Key? key,
     required this.image,
   }) : super(key: key);
 
+  @override
+  State<ImageCard> createState() => _ImageCardState();
+}
+
+class _ImageCardState extends State<ImageCard> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.sizeOf(context);
@@ -309,7 +297,7 @@ class ImageCard extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(50)),
                   image: DecorationImage(
                     // image: AssetImage('assets/images/girl2.jpeg'),
-                    image: AssetImage(image),
+                    image: AssetImage(widget.image),
                     fit: BoxFit.cover,
                   ),
                 ),

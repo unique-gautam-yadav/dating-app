@@ -1,5 +1,6 @@
+import 'dart:ui';
+
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dating_app/features/home/home_page.dart';
 import 'package:dating_app/features/home/model/story_model.dart';
 import 'package:dating_app/routers/routes.dart';
 import 'package:dating_app/widgets/common_widgets.dart';
@@ -37,19 +38,39 @@ class _LikePageState extends State<LikePage> {
           child: Column(
             children: [
               const SizedBox(
-                height: 50,
+                height: 80,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        context.go(Routes.homepage.path);
-                      },
-                      icon: const Icon(
-                        CupertinoIcons.back,
-                        size: 30,
-                      )),
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(5, 5),
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                        ),
+                        BoxShadow(
+                          color: Colors.white12,
+                          offset: Offset(-5, -5),
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                    child: IconButton(
+                        onPressed: () {
+                          context.go(Routes.homepage.path);
+                        },
+                        icon: const Icon(
+                          CupertinoIcons.back,
+                          size: 30,
+                        )),
+                  ),
                   const Spacer(),
                   const Text(
                     "Find Your Partner",
@@ -66,22 +87,139 @@ class _LikePageState extends State<LikePage> {
                 height: 30,
               ),
               SizedBox(
-                width: screenSize.width / 1,
-                height: screenSize.height / 2,
+                width: screenSize.width,
+                height: screenSize.height / 2.5,
                 child: Swiper(
                   itemCount: story.length,
                   itemBuilder: (context, index) {
                     var data = story[index];
-                    return ImageCard(
+                    return DetailCard(
                       image: data.image,
                     );
                   },
+                  viewportFraction: .77,
+                  fade: 1,
+                  scale: .8,
                   layout: SwiperLayout.DEFAULT,
                   itemHeight: screenSize.height,
                   itemWidth: screenSize.width,
                   axisDirection: AxisDirection.right,
-                  // pagination: const SwiperPagination(),
-                  transformer: ScaleAndFadeTransformer(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DetailCard extends StatefulWidget {
+  final String image;
+  const DetailCard({
+    Key? key,
+    required this.image,
+  }) : super(key: key);
+
+  @override
+  State<DetailCard> createState() => _ImageCardState();
+}
+
+class _ImageCardState extends State<DetailCard> {
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.sizeOf(context);
+    return Card(
+      color: Colors.transparent,
+      elevation: 0,
+      child: SizedBox(
+        width: screenSize.width,
+        height: screenSize.height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                width: screenSize.width,
+                height: screenSize.height,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(30)),
+                  image: DecorationImage(
+                    image: AssetImage(widget.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 15,
+                right: 15,
+                bottom: 15,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.black38,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      width: 200,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "John, 27",
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Text(
+                            "📍 SAN FRANCISCO · 20 KMS AWAY",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Flexible(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 8),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color(0xFF56A065),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    height: 8,
+                                    width: 8,
+                                    color: const Color(0xFF56A065),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    ("Active Now"),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
