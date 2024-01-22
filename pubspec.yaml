@@ -9,6 +9,7 @@ environment:
 dependencies:
   animated_text_kit: ^4.2.2
   card_swiper: ^3.0.1
+  carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
   dotted_border: ^2.1.0
   flutter:
@@ -25,13 +26,8 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/dp/
     - assets/images/
-
-  fonts:
-    - family: Quicksand
-      fonts:
-        - asset: assets/fonts/Quicksand-Bold.ttf
-        - asset: assets/fonts/Quicksand-Light.ttf
-        - asset: assets/fonts/Quicksand-Medium.ttf
-        - asset: assets/fonts/Quicksand-Regular.ttf
-        - asset: assets/fonts/Quicksand-SemiBold.ttf
+    - assets/girls/
+    - assets/males/
+    - assets/combo/

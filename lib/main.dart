@@ -12,9 +12,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFFBF4FC),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.pink,
-          background: Colors.indigo,
           // brightness: Brightness.dark,
         ),
       ),
