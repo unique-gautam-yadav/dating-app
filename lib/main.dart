@@ -1,6 +1,22 @@
 import 'package:dating_app/routers/router_config.dart';
 import 'package:flutter/material.dart';
 
+/*
+
+
+<Insta>
+  flutter.demon
+  flutter.spirit
+</Insta>
+
+<GitHub>
+  @unique-gautam-yadav
+  @Aditya-Thakur-369
+</GitHub>
+
+
+ */
+
 void main() {
   runApp(const MainApp());
 }
